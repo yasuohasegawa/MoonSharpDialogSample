@@ -1,0 +1,56 @@
+gBoolTest = true
+
+function testNumber(a, b)
+    print("testNumber")
+    return a+b
+end
+
+function testString()
+    return "hello"
+end
+
+function testTuple()
+    return 1,"abc"
+end
+
+function testCsharpCallBack()
+    local a = 123
+    print("from Lua: testCsharpCallBack:"..a)
+    CallbackTest();
+    CallbackTestWithArguments(3,5);
+end
+
+function testBool()
+print("testBool")
+    if gBoolTest then
+        gBoolTest = false
+    else
+        gBoolTest = true
+    end
+    return gBoolTest
+end
+
+function testTable()
+    local res = {}
+    res["a"] = 1
+    res["b"] = "abcd"
+    res["c"] = "日本語"
+    return res
+end
+
+function updateList(tbl)
+	for k,v in ipairs(tbl) do
+        tbl[k] = v*0.2
+	end
+    return tbl
+end
+
+TestClass = {
+    testMethod = function()
+        print("testMethod call")
+    end
+}
+
+function testClassMethod()
+    TestClass.testMethod()
+end

@@ -1,0 +1,57 @@
+dialogState = 0
+function GetDialogState()
+    return dialogState
+end
+
+return function()
+    dialog.ShowMessage( 'message test0' )
+    coroutine.yield()
+ 
+    dialog.ShowMessage( 'message test1' )
+    coroutine.yield()
+
+    dialogState = 1
+    dialog.ShowSelect( 'message selection 0', 'select0', 'select1', 'select2' )
+    coroutine.yield()
+
+    dialogState = 0
+    local selected = coroutine.yield()
+    if selected == 0 then
+        dialog.ShowMessage( 'answer 0' )
+        coroutine.yield()
+    elseif selected == 1 then
+        dialog.ShowMessage( 'answer 1' )
+        coroutine.yield()
+    elseif selected == 2 then
+        dialog.ShowMessage( 'answer 2' )
+        coroutine.yield()
+    end
+
+    dialog.ShowMessage( 'message test2' )
+    coroutine.yield()
+ 
+    dialog.ShowMessage( 'message test3' )
+    coroutine.yield()
+ 
+    dialog.ShowMessage( 'message test4' )
+    coroutine.yield()
+
+    dialogState = 1
+    dialog.ShowSelect( 'message selection 1', 'select0', 'select1', 'select2')
+    coroutine.yield()
+
+    dialogState = 0
+    selected = coroutine.yield()
+
+    dialogState = 2
+    if selected == 0 then
+        dialog.ShowMessage( 'answer 0' )
+        coroutine.yield()
+    elseif selected == 1 then
+        dialog.ShowMessage( 'answer 1' )
+        coroutine.yield()
+    elseif selected == 2 then
+        dialog.ShowMessage( 'answer 2' )
+        coroutine.yield()
+    end
+end
